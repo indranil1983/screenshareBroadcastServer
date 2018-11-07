@@ -1,0 +1,25 @@
+{
+  "name": "vue_experiment",
+  "description": "A Vue.js project",
+  "author": "enogdav <david.nogen@ericsson.com>",
+  "private": true,
+  "scripts": {
+    "watchify": "watchify -vd -p browserify-hmr -e src/front/main.js -o dist/build.js",
+    "serve": "http-server -o -s -c 1 -a localhost",
+    "dev": "npm-run-all --parallel watchify serve",
+    "build": "cross-env NODE_ENV=production browserify -g envify src/front/main.js | uglifyjs -c warnings=false -m > dist/build.js",
+    "start": "node ./server.js"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^1.7.3",
+    "express-fileupload": "^1.0.0"
+  },
+  "devDependencies": {},
+  "browserify": {
+    "transform": [
+      "babelify",
+      "browserify-css"
+    ]
+  }
+}
